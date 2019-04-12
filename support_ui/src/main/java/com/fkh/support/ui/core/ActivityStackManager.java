@@ -3,6 +3,7 @@ package com.fkh.support.ui.core;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.LinkedList;
 
@@ -99,13 +100,13 @@ public class ActivityStackManager implements Application.ActivityLifecycleCallba
     private void printActivityStack() {
         int size = mActivityStack.size();
         if (size > 0) {
-            LogUtil.i("Activity stack begin ======== ");
-            LogUtil.i("    The activity stack: ");
+            Log.i("","Activity stack begin ======== ");
+            Log.i("","    The activity stack: ");
             for (int i = size - 1; i >= 0; --i) {
                 Activity activity = mActivityStack.get(i);
-                LogUtil.i("   Activity" + (i + 1) + " = " + activity.getClass().getSimpleName());
+                Log.i("","   Activity" + (i + 1) + " = " + activity.getClass().getSimpleName());
             }
-            LogUtil.i("Activity stack end ========== ");
+            Log.i("","Activity stack end ========== ");
         }
     }
 
@@ -119,7 +120,7 @@ public class ActivityStackManager implements Application.ActivityLifecycleCallba
     public void onActivityStarted(Activity activity) {
         mActivityCount++;
         if (mActivityCount == 1) {
-            LogUtil.i("从后台切到前台");
+            Log.i("","从后台切到前台");
             if (foregroundStatusListener != null) {
                 foregroundStatusListener.isForeground(true);
             }
@@ -138,7 +139,7 @@ public class ActivityStackManager implements Application.ActivityLifecycleCallba
     public void onActivityStopped(Activity activity) {
         mActivityCount--;
         if (mActivityCount == 0) {
-            LogUtil.i("从前台切到后台");
+            Log.i("","从前台切到后台");
 
             if (foregroundStatusListener != null) {
                 foregroundStatusListener.isForeground(false);
